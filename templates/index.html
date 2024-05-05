@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div id="top">
+    <header class="d-flex align-items-center justify-content-center justify-content-lg-start">
+        <div class="container d-flex flex-direction-row align-items-center justify-content-center">
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <img src="{{ url_for('static', filename='/assets/logo.png') }}"
+                     style="margin: 1rem; height: 5vh; width: 5vh; border-radius: 50%;" class="companyname">
+            </a>
+
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="{{ url_for('about') }}" class="nav-link px-2 text-white">Товары</a></li>
+            </ul>
+
+            <div class="text-end">
+                {% if not logged_in: %}
+                <a href="{{ url_for('register') }}">
+                    <button type="button" class="btn btn-outline-light">Регистрация</button>
+                </a>
+                <a href="{{ url_for('login') }}">
+                    <button type="button" class="btn btn-warning">Войти</button>
+                </a>
+            </div>
+                {% else %}
+            <a href="{{ url_for('logout') }}">
+                <button type="button" class="btn btn-outline-light">Выйти</button>
+            </a>
+            {% if user_is_admin : %}
+                <a href="{{ url_for('me') }}">
+                    <button type="button" class="btn btn-outline-light">Личный кабинет</button>
+                </a>
+            {% endif %}
+
+            <a href="{{ url_for('cart') }}">
+                <button type="button" class="btn btn-outline-light">Cart</button>
+            </a>
+            {% endif %}
+        </div>
+    </header>
+
+
+    <div class="text-center" id="hero">
+        <h1 class="companyname fw-bold py-2">PHARMAPLUS</h1>
+        <div class="col-lg-6 mx-auto">
+            <h2 class="lead fw-light pb-4 mt-1">Здоровье доступно</h2>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <a class="px-4 gap-3 my-5" href="{{ url_for('about') }}">
+                    <button type="button" class="btn btn-primary btn-lg">
+                        Наши Товары
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="jumbo">
+    <div class="features_section first">
+        <h2 class="">Популярные товары</h2>
+        <section class="carousel slider pt-2">
+        </section>
+    </div>
+</div>
+
+<div class="jumbo">
+
+    <div class="container my-5">
+
+        <h2 class="border-bottom">Почему мы?</h2>
+
+        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+            <div class="feature col">
+                <img src="{{ url_for('static', filename='/assets/icons/shipping.png') }}" alt="">
+                <h2 class="fs-2">Доставка до двери</h2>
+                <p>Мы доставим ваш заказ прямо к вам в дом!</p>
+            </div>
+
+            <div class="feature col">
+                <img src="{{ url_for('static', filename='/assets/icons/hours.png') }}" alt="">
+                <h2 class="fs-2">Круглосуточная поддержка</h2>
+                <p>Если у вас возникли вопросы - вы можете обратиться в нашу службу поддержки в любое время!</p>
+            </div>
+
+            <div class="feature col">
+                <img src="{{ url_for('static', filename='/assets/icons/specialist.png') }}" alt="">
+                <h2 class="fs-2">Консультация у специалистов</h2>
+                <p>Если вам необходим совет или консультация специцалиста - мы свяжем вас с лучшими специалистами</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="features_section container my-5">
+        <h2 class="">Наши партнеры</h2>
+        <section class="carousel slider pt-5">
+            <div class="slide"><img src="{{ url_for('static', filename='/assets/partners/1.png') }}"></div>
+            <div class="slide"><img src="{{ url_for('static', filename='/assets/partners/2.png') }}"></div>
+            <div class="slide"><img src="{{ url_for('static', filename='/assets/partners/3.png') }}"></div>
+            <div class="slide"><img src="{{ url_for('static', filename='/assets/partners/4.png') }}"></div>
+            <div class="slide"><img src="{{ url_for('static', filename='/assets/partners/7.png') }}"></div>
+            <div class="slide"><img src="{{ url_for('static', filename='/assets/partners/5.png') }}"></div>
+            <div class="slide"><img src="{{ url_for('static', filename='/assets/partners/6.png') }}"></div>
+            <div class="slide"><img src="{{ url_for('static', filename='/assets/partners/7.png') }}"></div>
+            <div class="slide"><img src="{{ url_for('static', filename='/assets/partners/8.png') }}"></div>
+        </section>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='/js/renderproducts.js') }}"></script>
+
+{% endblock %}
